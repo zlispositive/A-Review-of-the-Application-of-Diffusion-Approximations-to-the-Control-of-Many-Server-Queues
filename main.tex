@@ -5,6 +5,7 @@
 
 
 \usepackage{amsmath} % Underbrace and alignment
+\usepackage{amssymb}
 \usepackage[displaymath, mathlines]{lineno} % Line numbers
 \usepackage[margin=1in]{geometry} % Set Amazon margin (1 inch)
 \usepackage{fancyhdr} % Headers and Footers
@@ -103,6 +104,38 @@
 \maketitle
 
 \section{Introduction}
-The purpose of this document is to introduce the concept of heavy-traffic approximation in Queueing Theory to science community in XXX. 
+The purpose of this document is to introduce the concept of heavy-traffic approximation in Queueing Theory to science community in XXX. A system of large scale is usually difficult to analyze due to analytical intractability. For example, in call center, a simple model is the Erlang-A, aka, $M/M/N+M$, where the first $M$ stands for Poisson arrivals, the second $M$ for exponential service times, $N\geq 1$ for the number of servers and $+M$ for the exponential patience time. To calculate the steady-state distribution for number of contacts in the system, it involves the calculation of $N!$. See Section \ref{sec:appendix-erlanga} for more detail. When $N$ is large, which is often the case given the scale of operations in XXX, the computation of $N!$ can be very expensive. However, heavy-traffic theorems take advantage of large system scale and produce simple yet useful results. 
+
+In this tutorial, we properly define the concept of system \textit{scale} and \textit{heavy-traffic}. (I also want to review how the scale affects system behavior.) We will introduce two types of heavy-traffic results and their application in queueing theory: (1) conventional heavy-traffic limits and (2) many-server heavy-traffic.  But before we dive deep into the theoretical results, we first answer the question: how good is the heavy-traffic approximation, comparing to exact analysis? 
+
+\section{Quality of Approximation}
+
+\section{Conventional Heavy-traffic Limits}
+
+\section{Many-server Heavy-traffic Limits}
+
+\section{Appendix}
+We provide additional technical nodes in this Appendix. 
+
+\subsection{Exact analysis of Erlang-A model}\label{sec:appendix-erlanga}
+The Erlang-A model assumes exponential inter-arrival time with rate $\lambda$, exponential service(handle) rate $\mu$, $N$ parallel agents, and exponential patience time with mean $1/\gamma$. One can construct a simple Markov Chain and write the transition rate matrix to obtain the steady-state distribution ($\mathbf{\pi}$) for number of contact in the system, denoted as $X$. For given $N$ number of agents, let $\pi_n\equiv\mathbf{P}(X=n)$ denote the steady-state distribution
+\begin{align}
+	\pi_n=\begin{cases}
+		 \dfrac{1}{n!}\left({\dfrac{\lambda}{\mu}}\right)^n\pi_0,\quad n=0,1,\cdots,N\\
+		 \dfrac{1}{N!}
+		 {\left(\dfrac{\lambda}{\mu}\right)}^n
+		 \left(
+		 \prod_{j=N+1}^n\dfrac{\lambda}{N\mu+(j-N)\gamma}
+		 \right)\pi_0, \quad n=N+1, \cdots
+	\end{cases}
+\end{align}where 
+\begin{align}
+	\pi_0=\left[1+\sum_{j=1}^{N}\dfrac{1}{j!}\left({\dfrac{\lambda}{\mu}}\right)^n
+	+\dfrac{1}{N}\left({\dfrac{\lambda}{\mu}}\right)^N
+	\left(\sum_{i=N+1}^{\infty}\prod_{j=N+1}^i\dfrac{\lambda}{N\mu+(j-N)\gamma}\right)
+	\right]^{-1}.
+\end{align}
+
+
 
 \end{document}
